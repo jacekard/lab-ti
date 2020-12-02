@@ -1,0 +1,17 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    margin: 3px;
+}
+
+::ng-deep mat-card {
+    width: 430px;
+    margin: 5px;
+}
+
+::ng-deep mat-form-field {
+    margin: 5px;
+}

@@ -1,0 +1,23 @@
+<div class="center">
+  <h1>Hello!</h1>
+</div>
+
+<div *ngIf="!isUserLoggedIn; else kawusia" class="center">
+  <div>
+    <button mat-flat-button (click)="toggleLoginForm()" color="primary">Login</button>
+    <button mat-flat-button (click)="toggleRegisterForm()" color="accent">Register</button>
+    <ng-container *ngIf="isLoginForm">
+      <app-login></app-login>
+    </ng-container>
+    <br/>
+    <ng-container *ngIf="isRegisterForm">
+      <app-register></app-register>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #kawusia>
+  <div class="center">
+    <img src="assets/kawusia.gif" /> 
+  </div>
+</ng-template>

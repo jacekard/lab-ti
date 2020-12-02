@@ -1,0 +1,90 @@
+<mat-card *ngIf="!hasRegistered">
+    <mat-card-title>Register as new user</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <h3>Login and password</h3>
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Login" formControlName="login" [errorStateMatcher]="matcher" required>
+                <mat-hint>Enter your login</mat-hint>
+                <mat-error *ngIf="profileForm.get('login').hasError('required')">
+                    Login is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher"
+                    required>
+                <mat-hint>Enter your password</mat-hint>
+                <mat-error *ngIf="profileForm.get('password').hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <h3>Personal details</h3>
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="First name" formControlName="name" [errorStateMatcher]="matcher" required>
+                <mat-hint>Enter your first name</mat-hint>
+                <mat-error *ngIf="profileForm.get('name').hasError('required')">
+                    Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Surname" formControlName="surname" [errorStateMatcher]="matcher" required>
+                <mat-hint>Enter your surname</mat-hint>
+                <mat-error *ngIf="profileForm.get('surname').hasError('required')">
+                    Surname is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <input type="number" matInput placeholder="Age" formControlName="age" [errorStateMatcher]="matcher"
+                    min="1" max="99" required>
+                <mat-hint>Enter your age</mat-hint>
+                <mat-error *ngIf="profileForm.get('age').hasError('required') || profileForm.get('age').hasError('min')">
+                    Age is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <div formGroupName="address">
+                <h3>Address</h3>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Street" formControlName="street" [errorStateMatcher]="matcher"
+                        required>
+                    <mat-error *ngIf="profileForm.get('address').get('street').hasError('required')">
+                        Street is <strong>required</strong>
+                    </mat-error>
+                    <mat-hint>Enter your street</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="City" formControlName="city" [errorStateMatcher]="matcher" required>
+                    <mat-error *ngIf="profileForm.get('address').get('city').hasError('required')">
+                        City is <strong>required</strong>
+                    </mat-error>
+                    <mat-hint>Enter your city</mat-hint>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Postal code" formControlName="postalCode" [errorStateMatcher]="matcher"
+                        required>
+                    <mat-error *ngIf="profileForm.get('address').get('postalCode').hasError('required')">
+                        Postal code is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="profileForm.get('address').get('postalCode').hasError('pattern')">
+                        Postal code is <strong>not correct</strong>
+                    </mat-error>
+                    <mat-hint>Enter your postal code.</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Country" formControlName="country" [errorStateMatcher]="matcher"
+                        required>
+                    <mat-error *ngIf="profileForm.get('address').get('country').hasError('required')">
+                        Country is <strong>required</strong>
+                    </mat-error>
+                    <mat-hint>Enter your country.</mat-hint>
+                </mat-form-field>
+            </div>
+            <br />
+            <br />
+            <button type="submit" [disabled]="!profileForm.valid" mat-flat-button color="accent">Register</button>
+        </form>
+    </mat-card-content>
+</mat-card>

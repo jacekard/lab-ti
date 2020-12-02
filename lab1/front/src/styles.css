@@ -1,0 +1,10 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input {
+    margin: 3px;
+}
+
+::ng-deep input:-internal-autofill-selected {
+    background-color: white !important;
+}
