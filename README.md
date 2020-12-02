@@ -1,0 +1,2 @@
+# lab-ti
+Laboratoria z przedmiotu TECHNOLOGIE INTERNETOWE W APLIKACJACH MOBILNYCH
