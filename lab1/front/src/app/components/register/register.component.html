@@ -79,6 +79,9 @@
                     <mat-error *ngIf="profileForm.get('address').get('country').hasError('required')">
                         Country is <strong>required</strong>
                     </mat-error>
+                    <mat-error *ngIf="profileForm.get('address').get('country').hasError('pattern')">
+                        Country name is <strong>invalid</strong>
+                    </mat-error>
                     <mat-hint>Enter your country.</mat-hint>
                 </mat-form-field>
             </div>
@@ -88,3 +91,7 @@
         </form>
     </mat-card-content>
 </mat-card>
+
+<ng-container *ngIf="isZSRR">
+    <embed src="assets/ussr.mp3" width="180" height="90" loop="false" autostart="false" hidden="true" />
+</ng-container>

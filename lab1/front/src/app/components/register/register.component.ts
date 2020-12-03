@@ -13,7 +13,19 @@ export class RegisterComponent implements OnInit {
   public hasRegistered: Boolean = false;
   constructor(private authService: AuthService) { }
 
+  isZSRR: Boolean = false;
+
   ngOnInit(): void {
+    this.profileForm.get('address').get('country').valueChanges.subscribe(val => {
+      if (val == "ZSRR") {
+        console.log("ZSRR");
+        this.isZSRR = true;
+        document.body.style.backgroundImage = "url('assets/flag.svg')";
+      } else {
+        this.isZSRR = false;
+        document.body.style.backgroundImage = "none";
+      }
+    });
   }
 
   profileForm = new FormGroup({
@@ -27,7 +39,7 @@ export class RegisterComponent implements OnInit {
       street: new FormControl(''),
       postalCode: new FormControl('', [Validators.pattern('^\\d{2}-\\d{3}$')]),
       city: new FormControl(''),
-      country: new FormControl('')
+      country: new FormControl('', [Validators.pattern('^[a-zA-Z]+$')])
     })
   });
 
