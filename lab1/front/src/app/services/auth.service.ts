@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   public isUserLoggedIn: Boolean;
+  public currentUser: User;
   private url: string;
 
   constructor(

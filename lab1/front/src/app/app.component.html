@@ -1,8 +1,8 @@
-<div class="center">
+<div class="center mt-3">
   <h1>Hello!</h1>
 </div>
 
-<div *ngIf="!isUserLoggedIn; else kawusia" class="center">
+<div class="center mt-1">
   <div>
     <button mat-flat-button (click)="toggleLoginForm()" color="primary">Login</button>
     <button mat-flat-button (click)="toggleRegisterForm()" color="accent">Register</button>
@@ -14,10 +14,7 @@
       <app-register></app-register>
     </ng-container>
   </div>
+  <br/>
 </div>
 
-<ng-template #kawusia>
-  <div class="center">
-    <img src="assets/kawusia.gif" /> 
-  </div>
-</ng-template>
+<app-user-details></app-user-details>

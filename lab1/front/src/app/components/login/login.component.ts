@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyErrorStateMatcher } from '../my-error-state-matcher';
 import Swal from 'sweetalert2';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,19 @@ export class LoginComponent implements OnInit {
   public isLoginSuccessful = false;
   public hasLoggedIn: Boolean = false;
   public matcher = new MyErrorStateMatcher();
+
   public loginForm = new FormGroup({
     login: new FormControl(''),
     password: new FormControl('')
   });
+
+  get isUserAuthenticated(): Boolean {
+    return this.authService.isUserLoggedIn;
+  }
+
+  get currentUser(): User {
+    return this.authService.currentUser;
+  }
 
   constructor(
     private authService: AuthService) { }
@@ -30,12 +40,13 @@ export class LoginComponent implements OnInit {
       .subscribe(user => {
         this.isLoginSuccessful = true;
         this.authService.isUserLoggedIn = true;
-        Swal.fire('Hello ' + user.login + '!', 'You are correctly logged in.', 'success');
+        this.authService.currentUser = user;
+        //Swal.fire(, 'success');
       },
         error => {
           this.isLoginSuccessful = false;
           this.authService.isUserLoggedIn = false;
-          Swal.fire('Access denied!', 'Your login/password is incorrect.', 'error');
+          //Swal.fire('Access denied!', 'Your login/password is incorrect.', 'error');
         }
       ).add(() => this.hasLoggedIn = true);
   }

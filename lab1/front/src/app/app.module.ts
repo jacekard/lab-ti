@@ -18,12 +18,16 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import { MatCardModule } from '@angular/material/card';
     MatRippleModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
