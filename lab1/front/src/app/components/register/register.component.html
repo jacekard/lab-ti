@@ -11,7 +11,7 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher"
+                <input type="password" matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher"
                     required>
                 <mat-hint>Enter your password</mat-hint>
                 <mat-error *ngIf="profileForm.get('password').hasError('required')">
@@ -43,6 +43,16 @@
                     Age is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input type="string" matInput placeholder="PESEL" formControlName="pesel" [errorStateMatcher]="matcher" required>
+                <mat-hint>Enter your PESEL number</mat-hint>
+                <mat-error *ngIf="profileForm.get('pesel').hasError('required')">
+                    PESEL is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="profileForm.get('pesel').hasError('pattern')">
+                    PESEL is <strong>not correct</strong>
+                </mat-error>
+            </mat-form-field>
 
             <div formGroupName="address">
                 <h3>Address</h3>
@@ -60,6 +70,9 @@
                         City is <strong>required</strong>
                     </mat-error>
                     <mat-hint>Enter your city</mat-hint>
+                    <mat-error *ngIf="profileForm.get('address').get('city').hasError('pattern')">
+                        City is <strong>not correct</strong>
+                    </mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field appearance="outline">
@@ -91,7 +104,3 @@
         </form>
     </mat-card-content>
 </mat-card>
-
-<ng-container *ngIf="isZSRR">
-    <embed src="assets/ussr.mp3" width="180" height="90" loop="false" autostart="false" hidden="true" />
-</ng-container>

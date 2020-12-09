@@ -16,16 +16,6 @@ export class RegisterComponent implements OnInit {
   isZSRR: Boolean = false;
 
   ngOnInit(): void {
-    this.profileForm.get('address').get('country').valueChanges.subscribe(val => {
-      if (val == "ZSRR") {
-        console.log("ZSRR");
-        this.isZSRR = true;
-        document.body.style.backgroundImage = "url('assets/flag.svg')";
-      } else {
-        this.isZSRR = false;
-        document.body.style.backgroundImage = "none";
-      }
-    });
   }
 
   profileForm = new FormGroup({
@@ -34,11 +24,11 @@ export class RegisterComponent implements OnInit {
     name: new FormControl(''),
     surname: new FormControl(''),
     age: new FormControl('', [Validators.min(1)]),
-    pesel: new FormControl(''),
+    pesel: new FormControl('', [Validators.pattern('^\\d{11}$')]),
     address: new FormGroup({
       street: new FormControl(''),
       postalCode: new FormControl('', [Validators.pattern('^\\d{2}-\\d{3}$')]),
-      city: new FormControl(''),
+      city: new FormControl('', [Validators.pattern('^[a-zA-Z]+$')]),
       country: new FormControl('', [Validators.pattern('^[a-zA-Z]+$')])
     })
   });
